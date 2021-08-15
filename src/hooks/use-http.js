@@ -1,4 +1,3 @@
-import { is } from "@babel/types";
 import { useState } from "react";
 
 const useHttp = (requestConfig, applyData) => {
@@ -10,9 +9,9 @@ const useHttp = (requestConfig, applyData) => {
     setError(null);
     try {
       const response = await fetch(requestConfig.url, {
-        method: requestConfig.method,
-        headers: requestConfig.headers,
-        body: JSON.stringify(requestConfig.body),
+        method: requestConfig.method || "GET",
+        headers: requestConfig.headers || {},
+        body: JSON.stringify(requestConfig.body) || null,
       });
 
       if (!response.ok) {
